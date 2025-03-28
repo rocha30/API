@@ -29,6 +29,12 @@ El archivo [`data.js`](API/EJ1/data.js) configura un servidor Express que permit
 ]
 
 
-### Tecnologias que voy a usar para la API completa 
-# Voy a usar JavaScript con node.js y express, y como base de datos SQL con PGAdmin 
-# Puede que cambie de opinón en la base de datos ya que mongoDB tiene sus ventajas. 
+## 🌐 Tecnologías para la API
+
+Voy a usar:
+
+- **Lenguaje:** JavaScript  
+- **Backend:** Node.js con Express  
+- **Base de datos:** SQL con PGAdmin  
+
+📌 *Nota:* Puede que cambie de opinión y use **MongoDB**, ya que tiene sus ventajas.
