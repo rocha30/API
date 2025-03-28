@@ -27,9 +27,9 @@ El archivo [`data.js`](API/EJ1/data.js) configura un servidor Express que permit
         "carrera": "Diseño Gráfico"
     }
 ]
+```
 
-
-## 🌐 Tecnologías para la API
+#### 🌐 Tecnologías para la API
 
 Voy a usar:
 
