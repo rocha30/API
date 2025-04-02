@@ -1,20 +1,8 @@
-import pkg from 'pg';
-const { Client } = pkg;
+import { client, connectClient } from './client.js';
+
+await connectClient();
 
 
-const client = new Client({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'API',
-    password: 'roc23501',
-    port: 5432,
-  });
-  
-  export default client;
-  
-
-
-await client.connect();
 
 const obtenerUsuarios = async () => {
     
@@ -54,9 +42,6 @@ agregarDatos().then((result) => {
 
 const ObtenerUsuariosbyID = async () => {
     
-
-
-    
     const text = 'SELECT * FROM incidentes WHERE id = $1';
     const values = [1];
     const res = await client.query(text, values);
@@ -71,7 +56,20 @@ ObtenerUsuariosbyID().then((result)=> {
 })
 
 
+    
+const DeleteUsers = async () => {
+    const text = 'DELETE FROM incidentes WHERE id IN ($1, $2, $3, $4, $5)  ';
+    const values = [12,13,14,16,17];
+    const res = await client.query(text, values);
+    return res.rowCount
+};
+    
 
 
+DeleteUsers().then((result) => {
+    console.log(result);
+}
+);
 
-//Aqui va la logica para la base de datos. 
+
+// Aqui va la logica para la base de datos. 
