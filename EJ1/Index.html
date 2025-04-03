@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Documentación de la API de Incidentes</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 2rem;
+      background-color: #f8f9fa;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      color: #007bff;
+    }
+    .endpoint {
+      border: 1px solid #ddd;
+      background-color: #fff;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      border-left: 5px solid #007bff;
+      border-radius: 5px;
+    }
+    .method {
+      font-weight: bold;
+      color: #fff;
+      padding: 0.2rem 0.5rem;
+      border-radius: 3px;
+      margin-right: 0.5rem;
+    }
+    .GET { background-color: #28a745; }
+    .POST { background-color: #17a2b8; }
+    .PUT { background-color: #ffc107; }
+    .DELETE { background-color: #dc3545; }
+    .code {
+      background-color: #f1f1f1;
+      padding: 0.5rem;
+      margin-top: 0.5rem;
+      font-family: monospace;
+      white-space: pre-wrap;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Documentación de la API de Incidentes</h1>
+
+  <div id="api-docs"></div>
+
+  <script>
+    const endpoints = [
+      {
+        method: 'GET',
+        path: '/incidentes',
+        description: 'Obtiene todos los incidentes.',
+        example: `[
+  {
+    "id": 1,
+    "reporter": "Joel Jaquez",
+    "description": "La impresora se atascó",
+    "status": "pendiente"
+  }
+]`
+      },
+      {
+        method: 'GET',
+        path: '/incidentes/:id',
+        description: 'Obtiene un incidente específico por su ID.',
+        example: `{
+  "id": 2,
+  "reporter": "Andres Rocha",
+  "description": "No enciende la computadora",
+  "status": "resuelto"
+}`
+      },
+      {
+        method: 'POST',
+        path: '/incidentes',
+        description: 'Crea un nuevo incidente.',
+        example: `{
+  "reporter": "Maria Gonzalez",
+  "description": "No hay acceso a internet",
+  "status": "en proceso"
+}`
+      },
+      {
+        method: 'PUT',
+        path: '/incidentes/:id',
+        description: 'Actualiza el estado de un incidente por ID.',
+        example: `{
+  "status": "resuelto"
+}`
+      },
+      {
+        method: 'DELETE',
+        path: '/incidentes/:id',
+        description: 'Elimina un incidente por ID.',
+        example: `{
+  "message": "Incidente eliminado",
+  "incidente": {
+    "id": 3,
+    "reporter": "Carlos Ramirez",
+    "description": "Pantalla negra",
+    "status": "resuelto"
+  }
+}`
+      }
+    ];
+
+    const container = document.getElementById('api-docs');
+
+    endpoints.forEach(endpoint => {
+      const div = document.createElement('div');
+      div.className = 'endpoint';
+      div.innerHTML = `
+        <div>
+          <span class="method ${endpoint.method}">${endpoint.method}</span>
+          <code>${endpoint.path}</code>
+        </div>
+        <p>${endpoint.description}</p>
+        <div class="code">${endpoint.example}</div>
+      `;
+      container.appendChild(div);
+    });
+  </script>
+</body>
+</html>

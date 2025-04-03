@@ -61,7 +61,7 @@ app.put('/incidentes/:id', async (req, res) => {
 // });
 
 
-app.deleteIncidente('/incidentes/:id', async (req, res) => {
+app.delete('/incidentes/:id', async (req, res) => {
     const { id } = req.params;
     console.log('Intentando eliminar ID:', id);
   
