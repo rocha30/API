@@ -12,7 +12,14 @@ Este proyecto implementa dos APIs independientes utilizando **Node.js** y **Expr
 ```
 /API/
 │
-├── /EJ1/ │ ├── node_modules/ ← Módulos de Node.js ├── client.js ← Conexión a PostgreSQL ├── const.json ← Datos estáticos de usuarios ├── data.js ← API que maneja usuarios desde JSON ├── db.js ← Funciones CRUD para incidentes ├── Index.html ← Documentación visual de endpoints ├── package.json ← Dependencias y configuración ├── package-lock.json ← Control de versiones de dependencias │ ├── server/ ← (Reservado o en uso para despliegue futuro) │ ├── .gitignore ├── README.md
+├── EJ1/
+│   ├── data.js         ← API de usuarios (usa const.json como "base de datos")
+│   ├── const.json      ← Archivo JSON con datos de usuarios
+│   ├── client.js       ← Conexión a PostgreSQL
+│   ├── db.js           ← Funciones CRUD para la base de datos de incidentes
+│   ├── index.js        ← API de incidentes (servidor Express con endpoints REST)
+│   ├── docs.html       ← Página HTML con documentación de los endpoints
+│   ├── package.json
 ```
 
 ---

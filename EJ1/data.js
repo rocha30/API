@@ -50,22 +50,14 @@ app.put('/incidentes/:id', async (req, res) => {
     res.json(data);
 });
 
-// DELETE para eliminar un incidente por ID 
-// app.delete('/incidentes/:id', async (req, res) => {
-//     const {id} = req.params;
-//     const data = await deleteIncidente(id);
-//     if (!data) {
-//         return res.status(404).json({ error: 'Incidente no encontrado' });
-//     }
-//     res.json(data);
-// });
+
 
 
 app.delete('/incidentes/:id', async (req, res) => {
     const { id } = req.params;
     console.log('Intentando eliminar ID:', id);
   
-    const data = await deleteIncidente(Number(id)); // 👈 convierte a número
+    const data = await deleteIncidente(Number(id)); 
   
     if (!data) {
       return res.status(404).json({ error: 'Incidente no encontrado' });
