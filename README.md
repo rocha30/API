@@ -12,15 +12,7 @@ Este proyecto implementa dos APIs independientes utilizando **Node.js** y **Expr
 ```
 /API/
 │
-├── EJ1/
-│   ├── data.js          ← API de usuarios (usa const.json como "base de datos")
-│   ├── const.json       ← Archivo JSON con datos de usuarios
-│
-├── client.js            ← Conexión a PostgreSQL
-├── db.js                ← Funciones CRUD para la base de datos de incidentes
-├── index.js             ← API de incidentes (servidor Express con endpoints REST)
-├── docs.html            ← Página HTML con documentación de los endpoints
-├── package.json
+├── /EJ1/ │ ├── node_modules/ ← Módulos de Node.js ├── client.js ← Conexión a PostgreSQL ├── const.json ← Datos estáticos de usuarios ├── data.js ← API que maneja usuarios desde JSON ├── db.js ← Funciones CRUD para incidentes ├── Index.html ← Documentación visual de endpoints ├── package.json ← Dependencias y configuración ├── package-lock.json ← Control de versiones de dependencias │ ├── server/ ← (Reservado o en uso para despliegue futuro) │ ├── .gitignore ├── README.md
 ```
 
 ---
@@ -31,15 +23,25 @@ Este proyecto implementa dos APIs independientes utilizando **Node.js** y **Expr
 
 Esta API maneja un conjunto de **usuarios definidos manualmente** en el archivo `const.json`. Cada usuario tiene atributos como `nombre`, `edad`, `carrera`, etc.
 
+Aunque no está conectada a la base de datos, es útil para simulaciones o pruebas de conceptos básicos de rutas y manejo de datos en Express.
+
 ### 📂 Ruta principal
 
 ```bash
 GET http://localhost:3010/usuarios
-```
 
-> Muestra todos los usuarios registrados en el archivo JSON.
+---
+🛠 Descripción
+API REST completa y conectada a PostgreSQL que permite a los empleados reportar y administrar incidentes técnicos de la empresa (como fallos de computadora, impresora, red, etc.).
 
-📌 Esta API no está conectada a base de datos, y solo es útil para simulación o pruebas de conceptos.
+La conexión a la base de datos está configurada en client.js.
+Las consultas SQL (CRUD) están implementadas en db.js.
+La API permite:
+
+📥 Crear nuevos reportes
+📋 Consultar incidentes existentes
+✏️ Actualizar su estado
+❌ Eliminar reportes en caso de error
 
 ---
 
@@ -114,7 +116,7 @@ const client = new Client({
 ## ▶️ Ejecutar el servidor
 
 ```bash
-node index.js
+node data.js
 ```
 
 Servidor corriendo en:  
