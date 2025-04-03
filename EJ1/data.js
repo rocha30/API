@@ -1,40 +1,90 @@
-const express = require('express');
-const fs = require('fs');
-const path = require('path');
+import express from 'express';
+import {
+    getAllIncidentes,
+    getIncidenteById,
+    insertIncidente,
+    updateIncidente,
+    deleteIncidente
+} from './db.js'; //Importamos la funciones desde el db.js file. 
+
+
 const app = express();
-const port = 3010; 
+const port = 3010;
+app.use(express.json()); // Middleware para parsear JSON en las solicitudes
+
+// GET todos los incidentes
+app.get('/incidentes', async (req, res) => {
+    const data = await getAllIncidentes();
+    res.json(data);
+});
+
+// GET de incidente por ID
+app.get('/incidentes/:id', async (req, res) => {
+    const {id} = req.params;
+    const data = await getIncidenteById(id);
+    if (!data) {
+        return res.status(404).json({ error: 'Incidente no encontrado' });
+    }
+    res.json(data);
+});
+
+// POST para nuevo inicidente
+
+app.post('/incidentes', async (req, res) => {
+    const {reporter , description, status} = req.body;
+    const data = await insertIncidente(reporter, description, status);
+    res.status(201).json(data);
+});
+
+
+// PUT para actualizar el estado de un incidente
+// 1:30AM no me manda ningun error y sale 200 ok pero en BD no actualiza el status. 
+app.put('/incidentes/:id', async (req, res) => {
+    const {id} = req.params;
+    const {status} = req.body; 
+    console.log("status", status, "ID", id);
+    const data = await updateIncidente(id, status);
+    if (!data) {
+        return res.status(404).json({ error: 'Incidente no encontrado' });
+    }
+    res.json(data);
+});
+
+// DELETE para eliminar un incidente por ID 
+// app.delete('/incidentes/:id', async (req, res) => {
+//     const {id} = req.params;
+//     const data = await deleteIncidente(id);
+//     if (!data) {
+//         return res.status(404).json({ error: 'Incidente no encontrado' });
+//     }
+//     res.json(data);
+// });
+
+
+app.deleteIncidente('/incidentes/:id', async (req, res) => {
+    const { id } = req.params;
+    console.log('Intentando eliminar ID:', id);
+  
+    const data = await deleteIncidente(Number(id)); // 👈 convierte a número
+  
+    if (!data) {
+      return res.status(404).json({ error: 'Incidente no encontrado' });
+    }
+  
+    console.log('Incidente eliminado:', data);
+    res.json({ message: 'Incidente eliminado', incidente: data });
+  });
+  
+
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`); 
+});
+
+
+
 
 /*
-const {Client} = requiere('pg');
 
-const obtenerUsuarios = async () => {
-    const client = new Client({
-        user: 'postgres', 
-        host: 'localhost', 
-        database: 'API', 
-        password: 'roc23501', 
-        port: 5432
-    }); 
-
-
-    await client.connect();
-
-    const res = await client.query('SELECT * FROM incidentes');
-    const result = res.rows;
-    await client.end();
-    return result;
-}
-
-obtenerUsuarios().then((result) => {
-    console.log(result);
-});
-*/
-
-
-
-
-// Middleware para parsear JSON en las solicitudes (explica que es un middleware)
-app.use(express.json());
 
 //cargar json data desde otro file 
 
@@ -45,9 +95,7 @@ const jsonData = JSON.parse(fs.readFileSync(jsonPath, "utf8"));
 
 const posts = jsonData.Userpost; 
 
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`); 
-});
+
 
 
 app.get('/API/EJ1/Userpost', (req, res) => {
@@ -68,5 +116,6 @@ app.post('/API/EJ1/post', (req, res) => {
 }
 );
 
+*/
 
 
