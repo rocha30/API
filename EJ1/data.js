@@ -52,28 +52,30 @@ app.put('/incidentes/:id', async (req, res) => {
 
 
 
-
 app.delete('/incidentes/:id', async (req, res) => {
-    const { id } = req.params;
-    console.log('Intentando eliminar ID:', id);
+    try {
+      const { id } = req.params;
+      console.log('Intentando eliminar ID:', id);
   
-    const data = await deleteIncidente(Number(id)); 
+      const data = await deleteIncidente(Number(id));
   
-    if (!data) {
-      return res.status(404).json({ error: 'Incidente no encontrado' });
+      if (!data) {
+        return res.status(404).json({ error: 'Incidente no encontrado' });
+      }
+  
+      console.log('Incidente eliminado:', data);
+      res.json({ message: 'Incidente eliminado', incidente: data });
+  
+    } catch (err) {
+      console.error('Error en DELETE:', err);
+      res.status(500).json({ error: 'Error interno del servidor' });
     }
-  
-    console.log('Incidente eliminado:', data);
-    res.json({ message: 'Incidente eliminado', incidente: data });
   });
   
-
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`); 
-});
-
-
-
+  app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+  });
+  
 
 /*
 

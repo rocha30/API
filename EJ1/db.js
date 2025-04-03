@@ -32,9 +32,14 @@ export const updateIncidente = async (id, status) => {
 };
 
 export const deleteIncidente = async (id) => {
-  const res = await client.query('DELETE FROM incidentes WHERE id = $1 RETURNING *', [id]);
+  const res = await client.query(
+    'DELETE FROM incidentes WHERE id = $1 RETURNING *',
+    [id]
+  );
+  console.log('Resultado de la query DELETE:', res.rows);
   return res.rows[0];
 };
+
 
 
 
