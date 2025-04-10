@@ -1,31 +1,18 @@
-import { useEffect, useState } from 'react';
-import { getIncidentes } from '../services/api';
-
 function Home() {
-  const [incidentes, setIncidentes] = useState([]);
-
-  useEffect(() => {
-    getIncidentes()
-      .then(data => {
-        console.log('Incidentes desde la API:', data);
-        setIncidentes(data);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  }, []);
-
-  return (
-    <div>
-      <h1>Bienvenido a tu Frontend</h1>
-      <h2>Lista de Incidentes:</h2>
-      <ul>
-        {incidentes.map(incidente => (
-          <li key={incidente.id}>{incidente.reporter}</li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-export default Home;
+    return (
+      <div>
+        <h1>Bienvenido a tu Frontend 🎉</h1>
+        <p>Selecciona una acción:</p>
+        <ul>
+          <li><a href="/ver">Ver todos los incidentes</a></li>
+          <li><a href="/buscar">Buscar incidente por ID</a></li>
+          <li><a href="/crear">Crear nuevo incidente</a></li>
+          <li><a href="/actualizar">Actualizar estado de incidente</a></li>
+          <li><a href="/eliminar">Eliminar incidente</a></li>
+        </ul>
+      </div>
+    );
+  }
+  
+  export default Home;
+  
