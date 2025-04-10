@@ -3,6 +3,7 @@ import { client, connectClient } from './client.js';
 await connectClient();
 
 
+
 // QUERYS DE MANERA GENERAL Y YA LIMPIOS. 
 
 export const getAllIncidentes = async () => {

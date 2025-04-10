@@ -1,4 +1,7 @@
 import express from 'express';
+import cors from 'cors';
+
+
 import {
     getAllIncidentes,
     getIncidenteById,
@@ -8,9 +11,11 @@ import {
 } from './db.js'; //Importamos la funciones desde el db.js file. 
 
 
+
 const app = express();
 const port = 3010;
 app.use(express.json()); // Middleware para parsear JSON en las solicitudes
+app.use(cors());
 
 // GET todos los incidentes
 app.get('/incidentes', async (req, res) => {
