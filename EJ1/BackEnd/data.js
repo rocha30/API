@@ -18,6 +18,7 @@ app.get('/incidentes', async (req, res) => {
     res.json(data);
 });
 
+
 // GET de incidente por ID
 app.get('/incidentes/:id', async (req, res) => {
     const {id} = req.params;
