@@ -10,16 +10,21 @@ Este proyecto implementa dos APIs independientes utilizando **Node.js** y **Expr
 ## 🧩 Estructura del proyecto
 
 ```
-/API/
+/FrontEnd/
 │
-├── EJ1/
-│   ├── data.js         ← API de usuarios (usa const.json como "base de datos")
-│   ├── const.json      ← Archivo JSON con datos de usuarios
-│   ├── client.js       ← Conexión a PostgreSQL
-│   ├── db.js           ← Funciones CRUD para la base de datos de incidentes
-│   ├── index.js        ← API de incidentes (servidor Express con endpoints REST)
-│   ├── docs.html       ← Página HTML con documentación de los endpoints
-│   ├── package.json
+├── src/
+│   ├── pages/
+│   │   ├── Home.jsx                 ← Menú principal de navegación
+│   │   ├── VerIncidentes.jsx        ← Ver todos los incidentes
+│   │   ├── BuscarIncidente.jsx      ← Buscar incidente por ID
+│   │   ├── CrearIncidente.jsx       ← Formulario para crear incidente
+│   │   ├── ActualizarIncidente.jsx  ← Formulario para actualizar estado
+│   │   └── EliminarIncidente.jsx    ← Formulario para eliminar incidente
+│   ├── services/
+│   │   └── api.js                   ← Configuración de llamadas a la API con Axios
+│   ├── App.jsx                      ← Configuración de rutas
+│   └── main.jsx                     ← Punto de entrada de la aplicación
+
 ```
 
 ---

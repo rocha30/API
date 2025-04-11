@@ -1,7 +1,7 @@
 function Home() {
     return (
       <div>
-        <h1>Bienvenido a tu Frontend 🎉</h1>
+        <h1>Programa incidentes</h1>
         <p>Selecciona una acción:</p>
         <ul>
           <li><a href="/ver">Ver todos los incidentes</a></li>
